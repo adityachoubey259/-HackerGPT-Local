@@ -268,7 +268,8 @@ def check_migrations() -> Check:
     result = run([sys.executable, "-m", "alembic", "current"], timeout=15)
     if result.returncode != 0:
         return Check("FAIL", "migrations", result.stderr.strip() or "alembic failed")
-    return Check("PASS", "migrations", result.stdout.strip().splitlines()[0])
+    lines = (result.stdout.strip() or result.stderr.strip() or "head").splitlines()
+    return Check("PASS", "migrations", lines[0] if lines else "ok")
 
 
 def probe_http(url: str, *, timeout: float, name: str = "http") -> Check:

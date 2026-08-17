@@ -10,7 +10,10 @@ from pathlib import Path
 from typing import Any
 
 import yaml
+from pydantic import BaseModel, Field
 
+from backend.core.code_model import CodeDiagnostic, extract_code_blocks
+from backend.core.validators import ValidationStatus, get_validator_registry
 from backend.evaluation.models import (
     EvaluationCase,
     EvaluationCaseResult,
@@ -19,6 +22,92 @@ from backend.evaluation.models import (
     EvaluationRunRequest,
     EvaluationSummary,
 )
+
+
+class CodeQualityCheckResult(BaseModel):
+    status: str  # "completed_valid", "completed_invalid", "truncated", "cancelled"
+    fences_closed: bool
+    has_unexplained_placeholders: bool
+    diagnostics: list[CodeDiagnostic] = Field(default_factory=list)
+    notes: list[str] = Field(default_factory=list)
+    code_blocks_count: int = 0
+
+
+class DirectExpertQualityEvaluator:
+    """Evaluates output structure, fence closure, completion state, and syntax integrity."""
+
+    async def evaluate(
+        self,
+        markdown: str,
+        *,
+        finish_reason: str | None = None,
+        requested_language: str | None = None,
+    ) -> CodeQualityCheckResult:
+        notes: list[str] = []
+        diagnostics: list[CodeDiagnostic] = []
+
+        if finish_reason in ("cancelled", "user_stopped"):
+            return CodeQualityCheckResult(
+                status="cancelled",
+                fences_closed=markdown.count("```") % 2 == 0,
+                has_unexplained_placeholders=False,
+                notes=["Generation was cancelled by the user."],
+            )
+
+        fences_closed = markdown.count("```") % 2 == 0
+        if not fences_closed:
+            notes.append("Fenced code block is unclosed at end of message.")
+
+        if finish_reason in ("length", "max_tokens"):
+            notes.append("Response was truncated by provider token limits.")
+            return CodeQualityCheckResult(
+                status="truncated",
+                fences_closed=fences_closed,
+                has_unexplained_placeholders=False,
+                notes=notes,
+            )
+
+        blocks = extract_code_blocks(markdown)
+        has_placeholders = False
+        validator_registry = get_validator_registry()
+        valid_count = 0
+        invalid_count = 0
+
+        for block in blocks:
+            # Check for unexplained placeholders
+            if any(
+                ph in block.source
+                for ph in ["// TODO: implement", "# TODO: implement", "/* ... */", "# ..."]
+            ):
+                has_placeholders = True
+                notes.append("Code contains unresolved TODO or placeholder comments.")
+
+            res = await validator_registry.validate(block.source, block.raw_language_label)
+            if res.status == ValidationStatus.VALID:
+                valid_count += 1
+                if res.validator != "none":
+                    notes.append(f"{block.language}: Syntax check passed.")
+            elif res.status == ValidationStatus.INVALID:
+                invalid_count += 1
+                diagnostics.extend(res.diagnostics)
+                notes.append(f"{block.language}: Syntax errors detected.")
+            elif res.status == ValidationStatus.TOOL_UNAVAILABLE:
+                notes.append(f"{block.language}: Compiler unavailable; source integrity preserved.")
+            elif res.status == ValidationStatus.UNSUPPORTED:
+                notes.append(f"{block.language}: Language supported; static validation skipped.")
+
+        status = "completed_valid"
+        if invalid_count > 0 or not fences_closed:
+            status = "completed_invalid"
+
+        return CodeQualityCheckResult(
+            status=status,
+            fences_closed=fences_closed,
+            has_unexplained_placeholders=has_placeholders,
+            diagnostics=diagnostics,
+            notes=notes,
+            code_blocks_count=len(blocks),
+        )
 
 
 class EvaluationService:

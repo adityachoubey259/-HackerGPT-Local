@@ -168,7 +168,7 @@ profiles:
 
 def test_native_launcher_resolves_repository_from_script_path() -> None:
     launcher = _load_launcher()
-    assert launcher.ROOT.name == "HackerGPT Local"
+    assert (launcher.ROOT / "pyproject.toml").exists()
     assert launcher.PID_FILE == launcher.ROOT / "data" / "runtime" / "hackergpt.pid"
 
 
