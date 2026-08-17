@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite --configLoader runner --host 127.0.0.1 --port 5173",
     "typecheck": "tsc --noEmit -p tsconfig.app.json && tsc --noEmit -p tsconfig.node.json",
-    "build": "npm.cmd run typecheck && vite build --configLoader runner",
+    "build": "npm run typecheck && vite build --configLoader runner",
     "lint": "eslint .",
     "test": "vitest run --configLoader runner",
     "test:watch": "vitest --configLoader runner"

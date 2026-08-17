@@ -22,6 +22,7 @@ import yaml from "react-syntax-highlighter/dist/esm/languages/prism/yaml";
 import { oneDark, oneLight } from "react-syntax-highlighter/dist/esm/styles/prism";
 
 import { IconButton } from "../ui/IconButton";
+import { getLanguageDisplayName } from "../../utils/languages";
 
 SyntaxHighlighter.registerLanguage("bash", bash);
 SyntaxHighlighter.registerLanguage("c", c);
@@ -32,6 +33,8 @@ SyntaxHighlighter.registerLanguage("csharp", csharp);
 SyntaxHighlighter.registerLanguage("cs", csharp);
 SyntaxHighlighter.registerLanguage("go", go);
 SyntaxHighlighter.registerLanguage("html", markup);
+SyntaxHighlighter.registerLanguage("markup", markup);
+SyntaxHighlighter.registerLanguage("xml", markup);
 SyntaxHighlighter.registerLanguage("java", java);
 SyntaxHighlighter.registerLanguage("javascript", javascript);
 SyntaxHighlighter.registerLanguage("js", javascript);
@@ -54,17 +57,31 @@ SyntaxHighlighter.registerLanguage("yml", yaml);
 export default function CodeBlockHighlighter({
   code,
   language,
+  filename,
   dark
 }: {
   code: string;
   language: string;
+  filename?: string;
   dark: boolean;
 }) {
   const [copied, setCopied] = useState(false);
+  const displayName = getLanguageDisplayName(language);
+
   return (
     <div className="my-3 overflow-hidden rounded-xl border border-border-subtle bg-surface/80 shadow-sm">
       <div className="flex items-center justify-between border-b border-border-subtle bg-elevated/70 px-3 py-1.5 text-xs text-muted">
-        <span className="text-technical">{language}</span>
+        <div className="flex items-center gap-2 text-technical">
+          <span>{language}</span>
+          {displayName !== language && (
+            <span className="text-[0.85em] opacity-75">({displayName})</span>
+          )}
+          {filename && (
+            <span className="rounded bg-surface px-1.5 py-0.5 text-[0.85em] font-mono text-text">
+              {filename}
+            </span>
+          )}
+        </div>
         <IconButton
           label="Copy code"
           icon={copied ? <Check size={15} /> : <Copy size={15} />}
