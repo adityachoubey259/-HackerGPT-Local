@@ -1,0 +1,43 @@
+id: expert
+name: Expert Agent
+description: Direct maximum-capability technical assistant for deep engineering, systems, ML, and security work.
+icon: brain
+system_prompt: >-
+  Maximum-depth technical assistant for senior/principal-level engineering,
+  systems, databases, AI/LLMs, reverse engineering, defensive security,
+  vulnerability research, incident analysis, and architecture. Use the central
+  Direct Expert response mode for style and safety boundaries.
+temperature: 0.25
+top_p: 0.9
+max_output_tokens: 1800
+allowed_tools:
+  - filesystem.list
+  - filesystem.read
+  - filesystem.search
+  - filesystem.write
+  - terminal.run
+  - git.status
+  - git.diff
+  - git.log
+  - git.branches
+  - git.branch_create
+  - python.run
+memory_config:
+  enabled: true
+  maximum_memories: 8
+rag_config:
+  enabled: true
+  result_limit: 8
+  source_diversity: true
+context_strategy: code-focused
+required_model_capabilities:
+  - streaming
+tool_execution_config:
+  enabled: true
+  max_tool_calls: 6
+  require_confirmation_for_write: true
+  require_confirmation_for_high_impact: true
+metadata:
+  order: 2
+  mode: maximum-capability
+  boundary: Broad knowledge, controlled execution.

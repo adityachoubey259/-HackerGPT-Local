@@ -1,0 +1,62 @@
+{
+  "generated_at": "2026-08-11T02:48:59Z",
+  "iterations": 3,
+  "environment": "development",
+  "measurements": {
+    "settings_load_ms": {
+      "min": 1.08,
+      "mean": 1.151,
+      "max": 1.272
+    },
+    "model_routing_ms": {
+      "min": 2.553,
+      "mean": 2.939,
+      "max": 3.704
+    },
+    "prompt_architect_ms": {
+      "min": 4.183,
+      "mean": 4.304,
+      "max": 4.445
+    },
+    "chunking_ms": {
+      "min": 0.687,
+      "mean": 0.953,
+      "max": 1.481
+    },
+    "local_embedding_ms": {
+      "min": 0.694,
+      "mean": 5.9,
+      "max": 15.56
+    },
+    "evaluation_ms": {
+      "min": 7.115,
+      "mean": 7.92,
+      "max": 8.945
+    }
+  },
+  "frontend_bundle": {
+    "AgentsPage-CsI02qeB.js": 6944,
+    "Card-kH9B_OoI.js": 206,
+    "CodeBlockHighlighter-kJbFANpb.js": 100891,
+    "CybersecurityPage-J0w0rko4.js": 9451,
+    "icons-BzdA8xyX.js": 22164,
+    "index-B061FJSK.css": 38252,
+    "index-ClldaGLy.js": 56564,
+    "IntelligencePage-vW5Eu01j.js": 5057,
+    "KnowledgePage-CJQ1_ZhF.js": 8875,
+    "LearningStudioPage-Bkek06zp.js": 23777,
+    "markdown-BURH9OKG.js": 162975,
+    "MemoryPage-B0lWFelm.js": 6628,
+    "ModelsPage-BTktRPPN.js": 9117,
+    "PromptLabPage-BjpZvnwF.js": 5138,
+    "react-BWCxGbmR.js": 163746,
+    "ResearchPage-B8eszAC1.js": 6980,
+    "SettingsPage-CUcXoxLk.js": 7913,
+    "SystemStatusPage-CkuOYNjL.js": 8039,
+    "ToolsPage-DR09wnYz.js": 10407
+  },
+  "notes": [
+    "Measurements are local code-path timings, not model inference benchmarks.",
+    "No internet, Ollama, Qdrant, Docker, or host-local UI process is required."
+  ]
+}

@@ -1,0 +1,22 @@
+id: document
+name: Document Agent
+description: Source-grounded assistant for local documents, summaries, and citation-aware answers.
+icon: file-text
+system_prompt: >-
+  Source-grounded assistant for local documents, summaries, comparison,
+  extraction, and citation-aware answers from the knowledge base.
+temperature: 0.45
+top_p: 0.9
+max_output_tokens: 800
+allowed_tools:
+  - filesystem.list
+  - filesystem.read
+  - filesystem.search
+memory_config:
+  enabled: true
+rag_config:
+  enabled: true
+  result_limit: 8
+context_strategy: knowledge-heavy
+metadata:
+  order: 3

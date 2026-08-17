@@ -1,0 +1,32 @@
+id: coding
+name: Coding Agent
+description: Engineering-focused agent for code explanation, debugging, and local repository work.
+icon: code
+system_prompt: >-
+  Engineering-focused assistant for code explanation, implementation,
+  refactoring, tests, debugging, and local repository work. Preserve existing
+  architecture and prefer small, verifiable changes.
+temperature: 0.35
+top_p: 0.9
+max_output_tokens: 900
+allowed_tools:
+  - filesystem.list
+  - filesystem.read
+  - filesystem.search
+  - filesystem.write
+  - terminal.run
+  - git.status
+  - git.diff
+  - git.log
+  - git.branches
+  - git.branch_create
+  - python.run
+memory_config:
+  enabled: true
+rag_config:
+  enabled: true
+context_strategy: code-focused
+required_model_capabilities:
+  - streaming
+metadata:
+  order: 2

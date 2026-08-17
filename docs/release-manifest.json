@@ -1,0 +1,51 @@
+{
+  "product": "HackerGPT Local",
+  "candidate_version": "1.0.0-rc.1",
+  "python_package_version": "1.0.0rc1",
+  "release_status": "release-candidate",
+  "alembic_head": "0006_local_auth",
+  "database_migration_required": false,
+  "core_dependencies_added": [],
+  "optional_training_dependencies_added": [
+    "accelerate",
+    "datasets",
+    "peft",
+    "safetensors",
+    "torch",
+    "transformers"
+  ],
+  "new_release_surfaces": [
+    "deterministic evaluation service",
+    "Learning Studio API and UI",
+    "optional Transformers/PEFT LoRA training worker",
+    "training backend preflight and dataset JSONL export",
+    "training job progress, cancellation, resume metadata, and artifact checksums",
+    "file-backed model artifact registry metadata",
+    "local metrics middleware",
+    "sanitized diagnostics export",
+    "benchmark runner",
+    "pre-migration native launcher backup"
+  ],
+  "acceptance_blockers_for_final_1_0_0": [
+    "host-side browser visual acceptance",
+    "real configured local provider smoke test",
+    "real local training smoke with local model files and optional training dependencies",
+    "native launcher start/stop/wrong-CWD/doctor/backup/restore host acceptance",
+    "target-machine distribution packaging acceptance"
+  ],
+  "security_invariants": [
+    "untrusted content is data, not instructions",
+    "tool execution remains centralized and confirmation-gated",
+    "no shallow Ethical Hacking keyword filtering",
+    "no silent cloud fallback",
+    "training data and worker output remain untrusted data",
+    "training worker uses local model files only and does not automatically download weights"
+  ],
+  "final_integration_surfaces": [
+    "authenticated runtime response preferences",
+    "per-user Direct Expert prompt composition",
+    "safe Settings response controls",
+    "local change-password workflow with password-revision cookie invalidation",
+    "command-palette response-mode switching"
+  ]
+}

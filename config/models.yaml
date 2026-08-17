@@ -1,0 +1,47 @@
+default_provider: ollama
+default_model: null
+providers:
+  ollama:
+    enabled: true
+    type: ollama
+    label: Ollama
+    base_url: http://127.0.0.1:11434
+    health_timeout_seconds: 2
+    list_timeout_seconds: 5
+    metadata_timeout_seconds: 5
+    generation_timeout_seconds: 45
+    reasoning_enabled: false
+    model_overrides: {}
+  llama_cpp:
+    enabled: false
+    type: llama_cpp
+    label: llama.cpp
+    base_url: http://127.0.0.1:8080/v1
+    health_timeout_seconds: 2
+    list_timeout_seconds: 5
+    metadata_timeout_seconds: 5
+    generation_timeout_seconds: 45
+    reasoning_enabled: false
+    model_overrides: {}
+  openai_compatible:
+    enabled: false
+    type: openai_compatible
+    label: OpenAI-compatible local endpoint
+    base_url: http://127.0.0.1:8001/v1
+    health_timeout_seconds: 2
+    list_timeout_seconds: 5
+    metadata_timeout_seconds: 5
+    generation_timeout_seconds: 45
+    reasoning_enabled: false
+    model_overrides: {}
+  vllm:
+    enabled: false
+    type: vllm
+    label: vLLM OpenAI-compatible endpoint
+    base_url: http://127.0.0.1:8002/v1
+    health_timeout_seconds: 2
+    list_timeout_seconds: 5
+    metadata_timeout_seconds: 5
+    generation_timeout_seconds: 45
+    reasoning_enabled: false
+    model_overrides: {}

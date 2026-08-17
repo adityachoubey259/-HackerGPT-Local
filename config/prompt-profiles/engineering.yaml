@@ -1,0 +1,83 @@
+profiles:
+  - id: python-backend
+    label: Python Backend Engineering
+    prompt_type: backend
+    domains: [backend, api, services]
+    languages: [Python]
+    default_agent: coding
+    recommended_capabilities: [coding, reasoning, long-context]
+    required_context_sources: [project, rag, memory]
+    checklist:
+      - identify route/service/repository boundaries
+      - include async behavior and transaction handling
+      - include validation, errors, logging, tests, and migrations
+  - id: react-frontend
+    label: React Frontend Engineering
+    prompt_type: frontend
+    domains: [frontend, ui, accessibility]
+    languages: [TypeScript, JavaScript]
+    default_agent: coding
+    recommended_capabilities: [coding, frontend]
+    required_context_sources: [project, rag]
+    checklist:
+      - include component state, accessibility, responsiveness, and loading/error states
+      - preserve centralized API clients and strict TypeScript
+      - avoid generic dashboard patterns
+  - id: rest-api
+    label: REST API Design
+    prompt_type: api
+    domains: [api, openapi, sdk]
+    languages: [OpenAPI, JSON Schema]
+    default_agent: coding
+    recommended_capabilities: [reasoning, structured-output]
+    required_context_sources: [project, rag]
+    checklist:
+      - specify versioning, pagination, idempotency, errors, auth, and observability
+      - include request and response examples
+      - include compatibility and SDK implications
+  - id: sdk-design
+    label: SDK Design
+    prompt_type: sdk
+    domains: [sdk, client-libraries]
+    languages: [TypeScript, Python, Go, Java, C#]
+    default_agent: coding
+    recommended_capabilities: [coding, api-design]
+    required_context_sources: [project, rag]
+    checklist:
+      - include sync and async usage where relevant
+      - include retries, pagination, streaming, auth, errors, telemetry, examples, and tests
+  - id: database-optimization
+    label: Database Optimization
+    prompt_type: database
+    domains: [database, performance]
+    languages: [SQL]
+    default_agent: data-analysis
+    recommended_capabilities: [reasoning, data-analysis]
+    required_context_sources: [project, rag]
+    checklist:
+      - include schema, indexes, transactions, query plans, migrations, backup, and observability
+  - id: ethical-hacking-lab
+    label: Ethical Hacking Lab
+    prompt_type: ethical_hacking_lab
+    domains: [ethical-hacking, penetration-testing, kali, detection, incident-response]
+    languages: [Bash, PowerShell, Python, YARA, SQL]
+    default_agent: cybersecurity
+    recommended_capabilities: [security, reasoning, coding, long-context]
+    required_context_sources: [project, web, rag, memory]
+    checklist:
+      - include active authorized scope when provided by trusted application state
+      - use Run on, Command, Important flags, Expected result, Verify, If it fails when commands are useful
+      - include expected evidence, validation, remediation, and cleanup where applicable
+      - preserve data-vs-instructions and controlled execution boundaries
+  - id: cybersecurity-lab-compat
+    label: Ethical Hacking Lab
+    prompt_type: cybersecurity_lab
+    domains: [ethical-hacking, cybersecurity, kali, detection, incident-response]
+    languages: [Bash, PowerShell, Python, YARA, SQL]
+    default_agent: cybersecurity
+    recommended_capabilities: [security, reasoning, coding, long-context]
+    required_context_sources: [project, web, rag, memory]
+    checklist:
+      - compatibility profile for older cybersecurity_lab API callers
+      - include active authorized scope when provided by trusted application state
+      - distinguish knowledge from controlled execution

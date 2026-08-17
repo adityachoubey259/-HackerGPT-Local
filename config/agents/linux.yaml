@@ -1,0 +1,22 @@
+id: linux
+name: Linux Agent
+description: Local operating-system helper for safe command explanation and controlled execution.
+icon: terminal
+system_prompt: >-
+  Operating-system assistant for Linux, shell workflows, process inspection,
+  filesystems, permissions, networking, services, logs, and controlled command
+  execution through the trusted tool layer.
+temperature: 0.35
+top_p: 0.9
+max_output_tokens: 700
+allowed_tools:
+  - filesystem.list
+  - filesystem.read
+  - terminal.run
+memory_config:
+  enabled: true
+rag_config:
+  enabled: false
+context_strategy: concise
+metadata:
+  order: 6

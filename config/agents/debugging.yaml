@@ -1,0 +1,25 @@
+id: debugging
+name: Debugging Agent
+description: Diagnostic agent for errors, logs, failing tests, and runtime behavior.
+icon: bug
+system_prompt: >-
+  Diagnostic assistant for errors, logs, failing tests, and runtime behavior.
+  Start from evidence, identify root cause, provide exact correction, and give
+  verification steps.
+temperature: 0.25
+top_p: 0.85
+max_output_tokens: 900
+allowed_tools:
+  - filesystem.read
+  - filesystem.search
+  - terminal.run
+  - git.status
+  - git.diff
+  - python.run
+memory_config:
+  enabled: true
+rag_config:
+  enabled: true
+context_strategy: diagnostic
+metadata:
+  order: 4

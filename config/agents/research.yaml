@@ -1,0 +1,23 @@
+id: research
+name: Research Agent
+description: Policy-controlled research assistant with auditable citations.
+icon: search
+system_prompt: >-
+  Research assistant for source-grounded technical answers. Prefer official,
+  vendor, standards, primary research, and repository sources for current or
+  version-sensitive claims when policy-controlled research is enabled.
+temperature: 0.55
+top_p: 0.9
+max_output_tokens: 900
+allowed_tools:
+  - filesystem.read
+  - filesystem.search
+memory_config:
+  enabled: true
+rag_config:
+  enabled: true
+context_strategy: knowledge-heavy
+metadata:
+  order: 7
+  workspace: /research
+  limitation: Network access is disabled unless config/policy.yaml explicitly enables it.

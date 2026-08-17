@@ -1,0 +1,48 @@
+profiles:
+  - pattern: "*qwen*coder*"
+    strengths: [coding, debugging, frontend, backend, security, instruction-following]
+    weaknesses: [vision]
+    coding_score: 0.92
+    reasoning_score: 0.72
+    speed_score: 0.68
+    context_length: 32768
+    estimated_vram_bytes: 5500000000
+    recommended_agents: [coding, debugging, cybersecurity, expert]
+    default_generation:
+      temperature: 0.35
+      top_p: 0.9
+  - pattern: "*deepseek*coder*"
+    strengths: [coding, debugging, reasoning, security]
+    coding_score: 0.9
+    reasoning_score: 0.75
+    speed_score: 0.55
+    estimated_vram_bytes: 6000000000
+    recommended_agents: [coding, cybersecurity, expert]
+  - pattern: "*llama*3*"
+    strengths: [general, reasoning, security, instruction-following, multilingual]
+    coding_score: 0.65
+    reasoning_score: 0.78
+    speed_score: 0.7
+    estimated_vram_bytes: 5200000000
+    recommended_agents: [general, research, cybersecurity]
+  - pattern: "*mistral*"
+    strengths: [general, speed, instruction-following]
+    coding_score: 0.58
+    reasoning_score: 0.65
+    speed_score: 0.82
+    estimated_vram_bytes: 4300000000
+    recommended_agents: [general]
+  - pattern: "*phi*"
+    strengths: [speed, coding, low-memory]
+    coding_score: 0.7
+    reasoning_score: 0.55
+    speed_score: 0.9
+    estimated_vram_bytes: 3000000000
+    recommended_agents: [coding, general]
+  - pattern: "*nomic*embed*"
+    strengths: [embeddings]
+    weaknesses: [chat]
+    coding_score: 0.0
+    reasoning_score: 0.0
+    speed_score: 0.85
+    estimated_vram_bytes: 1500000000

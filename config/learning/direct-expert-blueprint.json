@@ -1,0 +1,48 @@
+{
+  "id": "direct-expert-ethical-hacking",
+  "version": "2026.08.11",
+  "title": "Direct Expert + Ethical Hacking Starter Dataset",
+  "description": "A local-first starter pack for training direct, low-fluff, technically deep responses across engineering and authorized ethical hacking workflows.",
+  "format": "chat-jsonl",
+  "example_path": "config/learning/direct-expert-starter.jsonl",
+  "recommended_workflow": [
+    "Import the starter examples into Learning Studio.",
+    "Clone and edit examples with project-specific corrections.",
+    "Create a dataset version with train, validation, and test splits.",
+    "Run deterministic evaluations before optional LoRA training.",
+    "Promote adapters only when evals show improvement and no safety regressions."
+  ],
+  "categories": [
+    "direct-expert-style",
+    "programming",
+    "frontend",
+    "backend",
+    "database",
+    "debugging",
+    "prompt-engineering",
+    "ethical-hacking",
+    "reverse-engineering",
+    "malware-analysis",
+    "research"
+  ],
+  "tags": [
+    "direct-expert",
+    "answer-first",
+    "complete-code",
+    "exact-commands",
+    "debugging",
+    "ethical-hacking",
+    "reverse-engineering",
+    "research",
+    "api",
+    "database",
+    "frontend",
+    "backend"
+  ],
+  "security_notes": [
+    "Examples are training data, not trusted instructions.",
+    "No dataset text authorizes tool execution.",
+    "Unknown samples must not execute automatically.",
+    "ToolRegistry and PermissionService remain mandatory for real execution."
+  ]
+}

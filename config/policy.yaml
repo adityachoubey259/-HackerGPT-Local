@@ -1,0 +1,141 @@
+response:
+  default_mode: direct_expert
+  directness: high
+  technical_depth: expert
+  assume_technical_user: true
+  generic_disclaimers: false
+  moralizing: false
+  shallow_keyword_filtering: false
+  unnecessary_refusals: false
+  prefer_complete_code: true
+  prefer_exact_commands: true
+  verify_current_information: true
+  investigate_before_unknown: true
+  cite_retrieved_sources: true
+  refuse_untrusted_instructions: true
+citation_policy:
+  require_citations_for_retrieved_content: true
+  max_quote_words_per_source: 25
+network_access:
+  default_access: disabled
+  cloud_inference: disabled
+filesystem_access:
+  workspace_read: true
+  workspace_write: true
+  outside_workspace: explicit
+command_execution:
+  default_permission: READ_ONLY
+  destructive_requires_confirmation: true
+  high_impact_requires_confirmation: true
+  read_only_auto_execute: true
+  write_local_requires_confirmation: true
+  always_confirm: false
+  tools_enabled: true
+  terminal_enabled: true
+  git_enabled: true
+  python_enabled: true
+  shell_mode_enabled: false
+  default_timeout_seconds: 15
+  maximum_timeout_seconds: 60
+  output_limit_bytes: 65536
+  confirmation_ttl_seconds: 300
+  allowed_tool_roots:
+    - .
+tool_permissions:
+  network_tools: disabled
+  shell_tools: explicit
+  file_write_tools: explicit
+research:
+  enabled: false
+  search_enabled: false
+  provider: searxng
+  searxng_base_url: null
+  allowed_domains: []
+  blocked_domains:
+    - 169.254.169.254
+  max_results: 8
+  max_download_bytes: 1000000
+  request_timeout_seconds: 10
+  redirect_limit: 3
+  cache_ttl_seconds: 86400
+  concurrency_limit: 3
+  official_sources_preferred: true
+  block_private_networks: true
+security:
+  authorized_scopes:
+    - name: Localhost Lab
+      scope_type: localhost
+      target: 127.0.0.1
+      description: Local-only loopback lab scope.
+    - name: Private Lab Network
+      scope_type: private_cidr
+      target: 10.0.0.0/8
+      description: RFC1918 private lab range; use only when explicitly owned or authorized.
+rag_policy:
+  enabled: true
+  maximum_retrieved_chunks: 5
+  minimum_relevance: 0.05
+  reranking_enabled: false
+  vector_store: faiss
+  embedding_provider: local
+  external_embeddings_permitted: false
+  upload_max_bytes: 10485760
+  allowed_ingestion_roots:
+    - .
+  allowed_file_types:
+    - .txt
+    - .md
+    - .markdown
+    - .html
+    - .htm
+    - .json
+    - .jsonl
+    - .csv
+    - .tsv
+    - .pdf
+    - .docx
+    - .py
+    - .ts
+    - .tsx
+    - .js
+    - .jsx
+    - .go
+    - .rs
+    - .c
+    - .h
+    - .cpp
+    - .hpp
+    - .java
+    - .sh
+    - .bash
+    - .ps1
+    - .yaml
+    - .yml
+    - .toml
+    - .sql
+  chunk_target_tokens: 420
+  chunk_overlap_tokens: 60
+  context_token_budget: 900
+memory_policy:
+  local_storage_enabled: true
+  long_term_memory_enabled: true
+  retention_days: 30
+  automatic_conversation_summaries: false
+  summary_threshold_messages: 24
+  maximum_retrieved_memories: 5
+  memory_embedding_provider: local
+  external_memory_embeddings_permitted: false
+logging:
+  redact_secrets: true
+  log_request_bodies: false
+  log_retrieved_content: false
+agent_permissions:
+  enabled: true
+  can_execute_tools: true
+model_routing:
+  local_models_preferred: true
+  cloud_fallback_enabled: false
+privacy:
+  local_first: true
+  send_user_data_to_cloud: false
+  retrieved_content_is_untrusted: true

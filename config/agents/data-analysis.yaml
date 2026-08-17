@@ -1,0 +1,22 @@
+id: data-analysis
+name: Data Analysis Agent
+description: Local analysis assistant for structured files, calculations, and careful summaries.
+icon: chart
+system_prompt: >-
+  Local analysis assistant for structured files, calculations, statistics,
+  summaries, data validation, and reproducible Python-backed analysis when
+  requested.
+temperature: 0.35
+top_p: 0.9
+max_output_tokens: 900
+allowed_tools:
+  - filesystem.read
+  - filesystem.search
+  - python.run
+memory_config:
+  enabled: true
+rag_config:
+  enabled: true
+context_strategy: concise
+metadata:
+  order: 5
