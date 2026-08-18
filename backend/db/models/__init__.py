@@ -21,8 +21,10 @@ from backend.db.models.security import (
 from backend.db.models.setting import Setting
 from backend.db.models.tool import ToolConfirmation, ToolExecution
 from backend.db.models.user import User
+from backend.db.models.workspace import CodingTask, Workspace, WorkspaceChange
 
 __all__ = [
+    "CodingTask",
     "Conversation",
     "CustomAgent",
     "Document",
@@ -44,4 +46,6 @@ __all__ = [
     "ToolConfirmation",
     "ToolExecution",
     "User",
+    "Workspace",
+    "WorkspaceChange",
 ]
